@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>BioConnect</title>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">BioConnect</div>
+            <nav class="nav-buttons">
+                <button class="btn btn-secondary" onclick="showModal('profileModal')">Perfil</button>
+                <button class="btn btn-secondary" onclick="showModal('messagesModal')">Mensagens</button>
+                <button class="btn btn-secondary" onclick="showModal('notificationsModal')">Notificações</button>
+                <button class="btn btn-primary" onclick="showModal('settingsModal')">Configurações</button>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <aside class="sidebar-left">
+                <div class="profile-card">
+                    <div class="profile-avatar">JT</div>
+                    <div class="profile-name">João Teixeira</div>
+                    <div class="profile-bio">Biólogo apaixonado por ciência, pesquisa e inovação</div>
+                    <div class="stats">
+                        <div class="stat">
+                            <div class="stat-number">1.2K</div>
+                            <div class="stat-label">Seguidores</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">892</div>
+                            <div class="stat-label">Seguindo</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">145</div>
+                            <div class="stat-label">Posts</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trending">
+                    <h3 class="widget-title">Tendências</h3>
+                    <div class="trending-item">
+                        <div class="trending-topic">#BiotecnologiaAvançada</div>
+                        <div class="trending-posts">2.3K posts</div>
+                    </div>
+                    <div class="trending-item">
+                        <div class="trending-topic">#PesquisaGenética</div>
+                        <div class="trending-posts">1.8K posts</div>
+                    </div>
+                    <div class="trending-item">
+                        <div class="trending-topic">#CiênciaInovadora</div>
+                        <div class="trending-posts">3.1K posts</div>
+                    </div>
+                    <div class="trending-item">
+                        <div class="trending-topic">#EcologiaDigital</div>
+                        <div class="trending-posts">956 posts</div>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="feed">
+                <div class="post-composer">
+                    <textarea class="composer-input" placeholder="O que você está pensando?"></textarea>
+                    <div class="composer-actions">
+                        <div class="media-buttons">
+                            <button class="media-btn" title="Adicionar foto"><ion-icon name="camera-outline" style="font-size: 1.5rem;"></ion-icon></button>
+                            <button class="media-btn" title="Adicionar vídeo"><ion-icon name="videocam-outline" style="font-size: 1.5rem;"></ion-icon></button>
+                            <button class="media-btn" title="Adicionar localização"><ion-icon name="compass-outline" style="font-size: 1.6rem;"></ion-icon></button>
+                            <button class="media-btn" title="Adicionar emoji"><ion-icon name="happy-outline" style="font-size: 1.5rem;"></ion-icon></button>
+                        </div>
+                        <button class="btn btn-primary" onclick="createPost()">Publicar</button>
+                    </div>
+                </div>
+
+                <div id="posts-container">
+                    <article class="post">
+                        <div class="post-header">
+                            <div class="post-avatar">MR</div>
+                            <div>
+                                <div class="post-author">Mateus Rodrigo</div>
+                                <div class="post-time">2 horas atrás</div>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            Acabei de lançar meu novo projeto! Uma aplicação web que conecta desenvolvedores freelancers com startups. O que vocês acham? 🚀
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&h=400&fit=crop&crop=center" alt="Aplicação web moderna" class="post-image">
+                        <div class="post-actions">
+                            <button class="action-btn" onclick="toggleLike(this)">
+                                <span><i class="fa-regular fa-heart"></i></span>
+                                <span class="like-count">24</span>
+                            </button>
+                            <button class="action-btn" onclick="toggleComments(this)">
+                                <span><ion-icon name="chatbox-ellipses-outline" style="font-size: 1.2rem;"></ion-icon></span>
+                                <span>8</span>
+                            </button>
+                            <button class="action-btn" onclick="sharePost(this)">
+                                <span><ion-icon name="repeat-outline" style="font-size: 1.2rem; color: cornflowerblue;"></ion-icon></span>
+                                <span>3</span>
+                            </button>
+                        </div>
+                        <div class="comments" style="display: none;">
+                            <div class="comment">
+                                <div class="comment-avatar">PL</div>
+                                <div class="comment-content">
+                                    <div class="comment-author">Pedro Luka</div>
+                                    <div class="comment-text">Parabéns! Ideia brilhante, já estou ansioso para testar!</div>
+                                </div>
+                            </div>
+                            <div class="comment">
+                                <div class="comment-avatar">IB</div>
+                                <div class="comment-content">
+                                    <div class="comment-author">Isaque Barcelos</div>
+                                    <div class="comment-text">Finalmente algo assim! Vou me cadastrar hoje mesmo.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="post">
+                        <div class="post-header">
+                            <div class="post-avatar">RL</div>
+                            <div>
+                                <div class="post-author">Ricardo Lima</div>
+                                <div class="post-time">4 horas atrás</div>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            Meu setup de trabalho atualizado! Investir em um bom ambiente faz toda diferença na produtividade 💻✨
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=600&h=400&fit=crop&crop=center" alt="Setup de trabalho moderno" class="post-image">
+                        <div class="post-actions">
+                            <button class="action-btn" onclick="toggleLike(this)">
+                                <span><i class="fa-regular fa-heart"></i></span>
+                                <span class="like-count">156</span>
+                            </button>
+                            <button class="action-btn" onclick="toggleComments(this)">
+                                <span><ion-icon name="chatbox-ellipses-outline" style="font-size: 1.2rem;"></ion-icon></span>
+                                <span>23</span>
+                            </button>
+                            <button class="action-btn" onclick="sharePost(this)">
+                                <span><ion-icon name="repeat-outline" style="font-size: 1.2rem; color: cornflowerblue;"></ion-icon></span>
+                                <span>12</span>
+                            </button>
+                        </div>
+                        <div class="comments" style="display: none;">
+                            <div class="comment">
+                                <div class="comment-avatar">LF</div>
+                                <div class="comment-content">
+                                    <div class="comment-author">Lucas Ferreira</div>
+                                    <div class="comment-text">Que setup incrível! Onde você comprou essa mesa?</div>
+                                </div>
+                            </div>
+                            <div class="comment">
+                                <div class="comment-avatar">MJ</div>
+                                <div class="comment-content">
+                                    <div class="comment-author">Marina Jesus</div>
+                                    <div class="comment-text">Ambiente perfeito para ser produtivo! 👏</div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="post">
+                        <div class="post-header">
+                            <div class="post-avatar">CF</div>
+                            <div>
+                                <div class="post-author">Carla Freitas</div>
+                                <div class="post-time">6 horas atrás</div>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            Participando da conferência TechInnovate 2025! Palestrantes incríveis falando sobre IA, blockchain e o futuro do desenvolvimento web. A energia aqui está incrível! 🎯🚀
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop&crop=center" alt="Conferência de tecnologia" class="post-image">
+                        <div class="post-actions">
+                            <button class="action-btn" onclick="toggleLike(this)">
+                                <span><i class="fa-regular fa-heart"></i></span>
+                                <span class="like-count">289</span>
+                            </button>
+                            <button class="action-btn" onclick="toggleComments(this)">
+                                <span><ion-icon name="chatbox-ellipses-outline" style="font-size: 1.2rem;"></ion-icon></span>
+                                <span>42</span>
+                            </button>
+                            <button class="action-btn" onclick="sharePost(this)">
+                                <span><ion-icon name="repeat-outline" style="font-size: 1.2rem; color: cornflowerblue;"></ion-icon></span>
+                                <span>28</span>
+                            </button>
+                        </div>
+                        <div class="comments" style="display: none;">
+                            <div class="comment">
+                                <div class="comment-avatar">MO</div>
+                                <div class="comment-content">
+                                    <div class="comment-author">Miguel Oliveira</div>
+                                    <div class="comment-text">Que inveja! Compartilha as principais insights depois!</div>
+                                </div>
+                            </div>
+                            <div class="comment">
+                                <div class="comment-avatar">SF</div>
+                                <div class="comment-content">
+                                    <div class="comment-author">Sofia Ferraz</div>
+                                    <div class="comment-text">Participei no ano passado, evento sensacional! 🔥</div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="post">
+                        <div class="post-header">
+                            <div class="post-avatar">TN</div>
+                            <div>
+                                <div class="post-author">Thiago Nascimento</div>
+                                <div class="post-time">8 horas atrás</div>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            Finalmente consegui! Depois de meses de desenvolvimento, minha primeira app mobile está na loja! Obrigado a todos que me apoiaram nessa jornada 📱<i class="fa-regular fa-heart"></i>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&h=400&fit=crop&crop=center" alt="Desenvolvimento de aplicativo mobile" class="post-image">
+                        <div class="post-actions">
+                            <button class="action-btn" onclick="toggleLike(this)">
+                                <span><i class="fa-regular fa-heart"></i></span>
+                                <span class="like-count">445</span>
+                            </button>
+                            <button class="action-btn" onclick="toggleComments(this)">
+                                <span><ion-icon name="chatbox-ellipses-outline" style="font-size: 1.2rem;"></ion-icon></span>
+                                <span>67</span>
+                            </button>
+                            <button class="action-btn" onclick="sharePost(this)">
+                                <span><ion-icon name="repeat-outline" style="font-size: 1.2rem; color: cornflowerblue;"></ion-icon></span>
+                                <span>34</span>
+                            </button>
+                        </div>
+                        <div class="comments" style="display: none;">
+                            <div class="comment">
+                                <div class="comment-avatar">LR</div>
+                                <div class="comment-content">
+                                    <div class="comment-author">Laura Ribeiro</div>
+                                    <div class="comment-text">Parabéns! Qual é o nome do app? Já quero baixar!</div>
+                                </div>
+                            </div>
+                            <div class="comment">
+                                <div class="comment-avatar">RC</div>
+                                <div class="comment-content">
+                                    <div class="comment-author">Rafael Castro</div>
+                                    <div class="comment-text">Que conquista incrível! Sucesso total! 🎉</div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="post">
+                        <div class="post-header">
+                            <div class="post-avatar">AM</div>
+                            <div>
+                                <div class="post-author">Alice Mendes</div>
+                                <div class="post-time">10 horas atrás</div>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            Sessão de brainstorming da equipe hoje! Nada como trabalhar com pessoas talentosas e criativas. Já saíram várias ideias geniais para os próximos projetos! 🧠💡
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop&crop=center" alt="Equipe fazendo brainstorming" class="post-image">
+                        <div class="post-actions">
+                            <button class="action-btn" onclick="toggleLike(this)">
+                                <span><i class="fa-regular fa-heart"></i></span>
+                                <span class="like-count">178</span>
+                            </button>
+                            <button class="action-btn" onclick="toggleComments(this)">
+                                <span><ion-icon name="chatbox-ellipses-outline" style="font-size: 1.2rem;"></ion-icon></span>
+                                <span>29</span>
+                            </button>
+                            <button class="action-btn" onclick="sharePost(this)">
+                                <span><ion-icon name="repeat-outline" style="font-size: 1.2rem; color: cornflowerblue;"></ion-icon></span>
+                                <span>15</span>
+                            </button>
+                        </div>
+                        <div class="comments" style="display: none;">
+                            <div class="comment">
+                                <div class="comment-avatar">FB</div>
+                                <div class="comment-content">
+                                    <div class="comment-author">Felipe Barbosa</div>
+                                    <div class="comment-text">Trabalho em equipe é tudo! Ansioso pelos resultados!</div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <div>Carregando mais posts...</div>
+                </div>
+            </section>
+
+            <aside class="sidebar-right">
+                <div class="suggestions">
+                    <h3 class="widget-title">Sugestões para você</h3>
+                    <div class="suggestion-item">
+                        <div class="suggestion-avatar">TC</div>
+                        <div class="suggestion-info">
+                            <div class="suggestion-name">Thiago Costa</div>
+                            <div class="suggestion-mutual">3 amigos em comum</div>
+                        </div>
+                        <button class="follow-btn" onclick="followUser(this)">Seguir</button>
+                    </div>
+                    <div class="suggestion-item">
+                        <div class="suggestion-avatar">JS</div>
+                        <div class="suggestion-info">
+                            <div class="suggestion-name">Julia Souza</div>
+                            <div class="suggestion-mutual">5 amigos em comum</div>
+                        </div>
+                        <button class="follow-btn" onclick="followUser(this)">Seguir</button>
+                    </div>
+                    <div class="suggestion-item">
+                        <div class="suggestion-avatar">DP</div>
+                        <div class="suggestion-info">
+                            <div class="suggestion-name">Diego Pereira</div>
+                            <div class="suggestion-mutual">2 amigos em comum</div>
+                        </div>
+                        <button class="follow-btn" onclick="followUser(this)">Seguir</button>
+                    </div>
+                    <div class="suggestion-item">
+                        <div class="suggestion-avatar">FM</div>
+                        <div class="suggestion-info">
+                            <div class="suggestion-name">Fernanda Martins</div>
+                            <div class="suggestion-mutual">7 amigos em comum</div>
+                        </div>
+                        <button class="follow-btn" onclick="followUser(this)">Seguir</button>
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <!-- Modais -->
+    <div class="modal" id="profileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Meu Perfil</h2>
+                <button class="close-btn" onclick="closeModal('profileModal')">&times;</button>
+            </div>
+            <div class="profile-card">
+                <div class="profile-avatar">JD</div>
+                <div class="profile-name">João Silva</div>
+                <div class="profile-bio">Desenvolvedor apaixonado por tecnologia e inovação</div>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number">1.2K</div>
+                        <div class="stat-label">Seguidores</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">892</div>
+                        <div class="stat-label">Seguindo</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">145</div>
+                        <div class="stat-label">Posts</div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary" style="width: 100%; margin-top: 20px;">Editar Perfil</button>
+        </div>
+    </div>
+
+    <div class="modal" id="messagesModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Mensagens</h2>
+                <button class="close-btn" onclick="closeModal('messagesModal')">&times;</button>
+            </div>
+            <div style="text-align: center; padding: 40px; color: #666;">
+                <div style="font-size: 48px; margin-bottom: 20px;"><ion-icon name="chatbox-ellipses-outline" style="font-size: 1.2rem;"></ion-icon></div>
+                <p>Nenhuma mensagem ainda.<br>Comece uma conversa!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="notificationsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Notificações</h2>
+                <button class="close-btn" onclick="closeModal('notificationsModal')">&times;</button>
+            </div>
+            <div style="text-align: center; padding: 40px; color: #666;">
+                <div style="font-size: 48px; margin-bottom: 20px;">🔔</div>
+                <p>Você está em dia!<br>Nenhuma notificação nova.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Configurações</h2>
+                <button class="close-btn" onclick="closeModal('settingsModal')">&times;</button>
+            </div>
+            <div style="text-align: center; padding: 40px; color: #666;">
+                <div style="font-size: 48px; margin-bottom: 20px;">⚙️</div>
+                <p>Configurações em desenvolvimento.<br>Em breve mais opções!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification" id="notification"></div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
